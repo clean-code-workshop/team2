@@ -2,17 +2,12 @@ package eu.sig.training.ch05.buildandsendmail;
 
 public class BuildAndSendMail {
     // tag::buildAndSendMail[]
-    public void buildAndSendMail(MailMan m, String firstName, String lastName,
-        String division, String subject, MailFont font, String message1,
-        String message2) {
-        // Format the email address
-        String mId = firstName.charAt(0) + "." + lastName.substring(0, 7) + "@"
-            + division.substring(0, 5) + ".compa.ny";
+    public void buildAndSendMail(MailMan man, MailOptions options) {        
         // Format the message given the content type and raw message
-        MailMessage mMessage = formatMessage(font,
-            message1 + message2);
+        MailMessage message = formatMessage(mail.getFont() + mail.getMessage1() + mail.getMessage2());
+        
         // Send message
-        m.send(mId, subject, mMessage);
+        man.send(mail, message);
     }
     // end::buildAndSendMail[]
 
@@ -24,7 +19,7 @@ public class BuildAndSendMail {
     private class MailMan {
 
         @SuppressWarnings("unused")
-        public void send(String mId, String subject, MailMessage mMessage) {}
+        public void send(Mail mail, MailMessage message) {}
 
     }
 
@@ -34,6 +29,81 @@ public class BuildAndSendMail {
 
     private class MailMessage {
 
+    }
+    
+    public class MailOptions {
+        private String firstName;
+        private String lastName;
+        private String division;
+        private String subject;
+        private MailFont font;
+        private String message1;
+        private String message2;
+        
+        public String getFirstName() {
+            return this.firstName;
+        }
+        
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        } 
+        
+        public String getLastName() {
+            return this.lastName;
+        }
+        
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
+        }
+        
+        public String getDivision() {
+            return this.division;
+        }
+        
+        public void setDivision(String division) {
+            this.division = division;
+        }
+        
+        public String getSubject() {
+            return this.subject;
+        }
+        
+        public void setSubject(String subject) {
+            this.subject = subject;
+        }
+        
+        public MailFont getFont() {
+            return this.font;
+        }
+        
+        public void setFont(MailFont font) {
+            this.font = font;
+        }
+        
+        public String getMessage1() {
+            return this.message1;
+        }
+        
+        public void setMessage1(String message1) {
+            this.message1 = message1;
+        }
+        
+        public String getMessage2() {
+            return this.message2;
+        }
+        
+        public void setMessage2(String message2) {
+            this.message2 = message2;
+        }
+        
+        public String getMId() {
+            return this.getFirstName().charAt(0) 
+                 + "."
+                 + this.getLastName().substring(0, 7) 
+                 + "@"
+                 + this.getDivision().substring(0, 5) 
+                 + ".compa.ny";
+        }
     }
 
 }
