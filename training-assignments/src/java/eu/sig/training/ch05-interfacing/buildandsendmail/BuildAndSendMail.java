@@ -2,9 +2,15 @@ package eu.sig.training.ch05.buildandsendmail;
 
 public class BuildAndSendMail {
     // tag::buildAndSendMail[]
-    public void buildAndSendMail(MailMan man, MailOptions options) {        
+    public void buildAndSendMail(MailMan man, MailOptions options) {    
+        String message1 = mail.getMessage1();
+        String message2 = mail.getMessage2();
+        String message3 = mail.getMessage3();
+        
+        assert message1 != message2 && message2 != message3 && message3 != message1;
+        
         // Format the message given the content type and raw message
-        MailMessage message = formatMessage(mail.getFont() + mail.getMessage1() + mail.getMessage2() + mail.getMessage3());
+        MailMessage message = formatMessage(mail.getFont() + message1 + message2 + message3);
         
         // Send message
         man.send(mail, message);
