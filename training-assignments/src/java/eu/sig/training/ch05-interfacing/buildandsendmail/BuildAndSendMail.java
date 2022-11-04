@@ -4,7 +4,7 @@ public class BuildAndSendMail {
     // tag::buildAndSendMail[]
     public void buildAndSendMail(MailMan man, MailOptions options) {        
         // Format the message given the content type and raw message
-        MailMessage message = formatMessage(mail.getFont() + mail.getMessage1() + mail.getMessage2());
+        MailMessage message = formatMessage(mail.getFont() + mail.getMessage1() + mail.getMessage2() + mail.getMessage3());
         
         // Send message
         man.send(mail, message);
@@ -39,6 +39,7 @@ public class BuildAndSendMail {
         private MailFont font;
         private String message1;
         private String message2;
+        private String message3;
         
         public String getFirstName() {
             return this.firstName;
@@ -94,6 +95,14 @@ public class BuildAndSendMail {
         
         public void setMessage2(String message2) {
             this.message2 = message2;
+        }
+        
+        public String getMessage3() {
+            return this.message3;
+        }
+        
+        public void setMessage3(String message3) {
+            this.message3 = message3;
         }
         
         public String getMId() {
